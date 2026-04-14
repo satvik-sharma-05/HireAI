@@ -61,7 +61,7 @@ export default function StructuredMarkdown({ content, className = "" }: Structur
                     ol: ({ node, ...props }) => (
                         <ol className="space-y-2 mb-4 ml-6 list-none" {...props} />
                     ),
-                    li: ({ node, ordered, ...props }) => {
+                    li: ({ node, ...props }: any) => {
                         const content = props.children;
                         const hasStrength = typeof content === 'string' && /strong|excellent|good|impressive/i.test(content);
                         const hasWeakness = typeof content === 'string' && /weak|poor|lacking|missing/i.test(content);
