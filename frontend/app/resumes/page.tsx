@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 export default function ResumesPage() {
     const router = useRouter();
     const { user } = useAuthStore();
-    const [resumes, setResumes] = useState([]);
+    const [resumes, setResumes] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [uploading, setUploading] = useState(false);
     const [showUploadModal, setShowUploadModal] = useState(false);

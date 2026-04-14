@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 export default function AnalyzePage() {
     const router = useRouter();
-    const [resumes, setResumes] = useState([]);
+    const [resumes, setResumes] = useState<any[]>([]);
     const [selectedResume, setSelectedResume] = useState("");
     const [jobDescription, setJobDescription] = useState("");
     const [analyzing, setAnalyzing] = useState(false);

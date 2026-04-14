@@ -7,8 +7,8 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 
 export default function CandidateDashboard() {
-    const [resumes, setResumes] = useState([]);
-    const [analyses, setAnalyses] = useState([]);
+    const [resumes, setResumes] = useState<any[]>([]);
+    const [analyses, setAnalyses] = useState<any[]>([]);
     const [uploading, setUploading] = useState(false);
 
     useEffect(() => {

@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 export default function AnalyzePage() {
     const router = useRouter();
     const { user } = useAuthStore();
-    const [resumes, setResumes] = useState([]);
+    const [resumes, setResumes] = useState<any[]>([]);
     const [selectedResume, setSelectedResume] = useState("");
     const [jobDescription, setJobDescription] = useState("");
     const [jobTitle, setJobTitle] = useState("");

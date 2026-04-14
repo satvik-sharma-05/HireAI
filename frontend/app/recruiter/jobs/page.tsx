@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 export default function JobsPage() {
     const router = useRouter();
     const { user } = useAuthStore();
-    const [jobs, setJobs] = useState([]);
+    const [jobs, setJobs] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

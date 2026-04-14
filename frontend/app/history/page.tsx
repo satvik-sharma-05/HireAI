@@ -10,7 +10,7 @@ import { analysisAPI } from "@/lib/api";
 export default function HistoryPage() {
     const router = useRouter();
     const { user } = useAuthStore();
-    const [analyses, setAnalyses] = useState([]);
+    const [analyses, setAnalyses] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState("all");
 

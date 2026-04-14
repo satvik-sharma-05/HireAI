@@ -10,7 +10,7 @@ import Link from "next/link";
 export default function DashboardPage() {
     const router = useRouter();
     const { user } = useAuthStore();
-    const [analyses, setAnalyses] = useState([]);
+    const [analyses, setAnalyses] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -162,8 +162,8 @@ export default function DashboardPage() {
                                             <div className="flex items-center gap-3 mb-2">
                                                 <h3 className="font-semibold text-gray-900">{analysis.job_title || 'Untitled Job'}</h3>
                                                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${analysis.score >= 80 ? 'bg-primary/10 text-primary' :
-                                                        analysis.score >= 60 ? 'bg-yellow-100 text-yellow-700' :
-                                                            'bg-red-100 text-red-700'
+                                                    analysis.score >= 60 ? 'bg-yellow-100 text-yellow-700' :
+                                                        'bg-red-100 text-red-700'
                                                     }`}>
                                                     {analysis.score}% Match
                                                 </span>
