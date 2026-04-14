@@ -6,6 +6,18 @@
 [![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vercel.com/)
+[![Render](https://img.shields.io/badge/Render-46E3B7?style=flat&logo=render&logoColor=white)](https://render.com/)
+
+---
+
+## 🚀 Live Demo
+
+**Frontend**: [https://hire-ai-nine.vercel.app](https://hire-ai-nine.vercel.app)  
+**Backend API**: [https://hireai-backend-ygtb.onrender.com](https://hireai-backend-ygtb.onrender.com)  
+**API Docs**: [https://hireai-backend-ygtb.onrender.com/docs](https://hireai-backend-ygtb.onrender.com/docs)
+
+> **Note**: Backend runs on Render's free tier and may take 30-50 seconds to wake up from sleep on first request.
 
 ---
 
@@ -70,15 +82,20 @@ HireAI is a production-grade AI-powered recruitment platform that transforms the
 - **FastAPI** - Modern Python web framework
 - **Motor** - Async MongoDB driver
 - **spaCy** - NLP and skill extraction
-- **Sentence Transformers** - Semantic embeddings (all-MiniLM-L6-v2)
-- **OpenRouter** - LLM API access (Mistral 7B)
+- **TF-IDF + scikit-learn** - Lightweight semantic matching (replaces heavy transformers)
+- **OpenRouter** - LLM API access for AI insights
 - **PyPDF2 / python-docx** - Document parsing
 
 ### Database & AI
 - **MongoDB Atlas** - Cloud NoSQL database
-- **Semantic Matching** - Cosine similarity on sentence embeddings
+- **TF-IDF Vectorization** - Efficient text similarity matching
 - **NLP Pipeline** - spaCy for text processing and skill extraction
 - **GenAI** - OpenRouter for explainable insights and recommendations
+
+### Deployment
+- **Frontend**: Vercel (Next.js optimized hosting)
+- **Backend**: Render (Python/FastAPI hosting)
+- **Database**: MongoDB Atlas (Cloud database)
 
 ---
 
@@ -111,7 +128,7 @@ HireAI is a production-grade AI-powered recruitment platform that transforms the
 ┌──────────────────▼──────────────────────────────────┐
 │                  AI LAYER                            │
 │                                                      │
-│  - Sentence Transformers (Semantic Embeddings)       │
+│  - TF-IDF Vectorization (Lightweight matching)       │
 │  - spaCy (NLP & Skill Extraction)                    │
 │  - OpenRouter (LLM for Insights)                     │
 │  - Cosine Similarity (Matching Algorithm)            │
@@ -129,10 +146,33 @@ HireAI is a production-grade AI-powered recruitment platform that transforms the
 **System Flow:**
 1. User uploads resume or creates job posting
 2. Backend extracts text and processes with NLP
-3. AI layer generates embeddings and calculates semantic similarity
+3. AI layer uses TF-IDF vectorization for semantic similarity
 4. GenAI generates human-readable insights and recommendations
 5. Results stored in MongoDB and displayed in frontend
 6. Users can chat with AI for additional guidance
+
+---
+
+## 🌐 Deployment
+
+### Production URLs
+
+- **Frontend (Vercel)**: https://hire-ai-nine.vercel.app
+- **Backend (Render)**: https://hireai-backend-ygtb.onrender.com
+- **API Documentation**: https://hireai-backend-ygtb.onrender.com/docs
+
+### Deployment Stack
+
+- **Frontend**: Deployed on Vercel with automatic deployments from GitHub
+- **Backend**: Deployed on Render with Python 3.10 runtime
+- **Database**: MongoDB Atlas (Cloud-hosted)
+- **AI Services**: OpenRouter API for LLM capabilities
+
+### Performance Notes
+
+- Frontend: Instant loading with global CDN
+- Backend: ~30-50 second cold start on free tier (first request after inactivity)
+- Subsequent requests: Fast response times (<500ms)
 
 ---
 
@@ -148,7 +188,7 @@ HireAI is a production-grade AI-powered recruitment platform that transforms the
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/hireai.git
+git clone https://github.com/satvik-sharma-05/HireAI.git
 cd hireai
 ```
 
@@ -389,10 +429,11 @@ MIT License - Free to use for learning and portfolio purposes.
 
 ## Author
 
-**Satvik**
+**Satvik Sharma**
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- GitHub: [@satvik-sharma-05](https://github.com/satvik-sharma-05)
+- Project Repository: [HireAI](https://github.com/satvik-sharma-05/HireAI)
+- Live Demo: [https://hire-ai-nine.vercel.app](https://hire-ai-nine.vercel.app)
 
 ---
 
