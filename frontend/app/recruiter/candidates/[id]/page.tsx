@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import RecruiterLayout from "@/components/RecruiterLayout";
@@ -12,7 +12,7 @@ import StructuredMarkdown from "@/components/StructuredMarkdown";
 import { resumeAPI, jobAPI, analysisAPI, advancedAPI } from "@/lib/api";
 import toast from "react-hot-toast";
 
-export default function CandidateDetailPage() {
+function CandidateDetailContent() {
     const router = useRouter();
     const params = useParams();
     const searchParams = useSearchParams();
@@ -132,15 +132,15 @@ export default function CandidateDetailPage() {
                         <div className="flex items-center gap-3">
                             {decision && (
                                 <span className={`px-4 py-2 rounded-lg font-semibold ${decision === "hire" ? "bg-primary/10 text-primary" :
-                                        decision === "consider" ? "bg-yellow-100 text-yellow-700" :
-                                            "bg-red-100 text-red-700"
+                                    decision === "consider" ? "bg-yellow-100 text-yellow-700" :
+                                        "bg-red-100 text-red-700"
                                     }`}>
                                     {decision === "hire" ? "✓ HIRE" : decision === "consider" ? "⚠ CONSIDER" : "✗ REJECT"}
                                 </span>
                             )}
                             <span className={`px-4 py-2 rounded-lg text-lg font-semibold ${analysis.score >= 80 ? "bg-primary/10 text-primary" :
-                                    analysis.score >= 60 ? "bg-yellow-100 text-yellow-700" :
-                                        "bg-red-100 text-red-700"
+                                analysis.score >= 60 ? "bg-yellow-100 text-yellow-700" :
+                                    "bg-red-100 text-red-700"
                                 }`}>
                                 {analysis.score}% Match
                             </span>
@@ -190,8 +190,8 @@ export default function CandidateDetailPage() {
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id)}
                                     className={`px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${activeTab === tab.id
-                                            ? "bg-primary text-white shadow-md"
-                                            : "text-gray-600 hover:bg-gray-50"
+                                        ? "bg-primary text-white shadow-md"
+                                        : "text-gray-600 hover:bg-gray-50"
                                         }`}
                                 >
                                     <span className="mr-2">{tab.icon}</span>
@@ -270,8 +270,8 @@ export default function CandidateDetailPage() {
                             variant="warning"
                         >
                             <div className={`inline-block px-4 py-2 rounded-lg mb-4 font-semibold ${analysis.score >= 85 ? "bg-primary/10 text-primary" :
-                                    analysis.score >= 70 ? "bg-yellow-100 text-yellow-700" :
-                                        "bg-red-100 text-red-700"
+                                analysis.score >= 70 ? "bg-yellow-100 text-yellow-700" :
+                                    "bg-red-100 text-red-700"
                                 }`}>
                                 {analysis.score >= 85 ? "✓ READY" : analysis.score >= 70 ? "⚠ MAYBE" : "✗ NOT READY"}
                             </div>
@@ -321,8 +321,8 @@ export default function CandidateDetailPage() {
                                         <button
                                             onClick={() => handleDecision("hire")}
                                             className={`p-4 rounded-lg border-2 transition-all ${decision === "hire"
-                                                    ? "border-primary bg-primary/10"
-                                                    : "border-gray-200 hover:border-primary/50"
+                                                ? "border-primary bg-primary/10"
+                                                : "border-gray-200 hover:border-primary/50"
                                                 }`}
                                         >
                                             <div className="text-3xl mb-2">✓</div>
@@ -332,8 +332,8 @@ export default function CandidateDetailPage() {
                                         <button
                                             onClick={() => handleDecision("consider")}
                                             className={`p-4 rounded-lg border-2 transition-all ${decision === "consider"
-                                                    ? "border-yellow-500 bg-yellow-50"
-                                                    : "border-gray-200 hover:border-yellow-300"
+                                                ? "border-yellow-500 bg-yellow-50"
+                                                : "border-gray-200 hover:border-yellow-300"
                                                 }`}
                                         >
                                             <div className="text-3xl mb-2">⚠</div>
@@ -343,8 +343,8 @@ export default function CandidateDetailPage() {
                                         <button
                                             onClick={() => handleDecision("reject")}
                                             className={`p-4 rounded-lg border-2 transition-all ${decision === "reject"
-                                                    ? "border-red-500 bg-red-50"
-                                                    : "border-gray-200 hover:border-red-300"
+                                                ? "border-red-500 bg-red-50"
+                                                : "border-gray-200 hover:border-red-300"
                                                 }`}
                                         >
                                             <div className="text-3xl mb-2">✗</div>
@@ -411,5 +411,19 @@ export default function CandidateDetailPage() {
                 </motion.div>
             </div>
         </RecruiterLayout>
+    );
+}
+
+export default function CandidateDetailPage() {
+    return (
+        <Suspense fallback={
+            <RecruiterLayout>
+                <div className="flex items-center justify-center h-full">
+                    <div className="inline-block w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                </div>
+            </RecruiterLayout>
+        }>
+            <CandidateDetailContent />
+        </Suspense>
     );
 }

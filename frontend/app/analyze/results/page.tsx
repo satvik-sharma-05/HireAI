@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
@@ -13,7 +13,7 @@ import { useAuthStore } from "@/lib/store";
 import { advancedAPI } from "@/lib/api";
 import toast from "react-hot-toast";
 
-export default function AnalysisResultsPage() {
+function AnalysisResultsContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { user } = useAuthStore();
@@ -436,5 +436,17 @@ export default function AnalysisResultsPage() {
                 </motion.div>
             </main>
         </div>
+    );
+}
+
+export default function AnalysisResultsPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="inline-block w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        }>
+            <AnalysisResultsContent />
+        </Suspense>
     );
 }
