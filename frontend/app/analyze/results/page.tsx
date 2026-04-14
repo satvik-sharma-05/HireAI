@@ -73,7 +73,9 @@ export default function AnalysisResultsPage() {
                     data = await advancedAPI.coverLetter(resumeId, jobId);
                     break;
             }
-            setAdvancedData({ ...advancedData, [feature]: data.data });
+            if (data) {
+                setAdvancedData({ ...advancedData, [feature]: data.data });
+            }
         } catch (error: any) {
             toast.error("Failed to load feature");
         } finally {
@@ -314,8 +316,8 @@ export default function AnalysisResultsPage() {
                             {activeTab === "reality" && result.reality_check ? (
                                 <div>
                                     <div className={`inline-block px-4 py-2 rounded-lg mb-4 font-semibold ${result.score >= 85 ? "bg-primary/10 text-primary" :
-                                            result.score >= 70 ? "bg-yellow-100 text-yellow-700" :
-                                                "bg-red-100 text-red-700"
+                                        result.score >= 70 ? "bg-yellow-100 text-yellow-700" :
+                                            "bg-red-100 text-red-700"
                                         }`}>
                                         {result.score >= 85 ? "✓ READY TO APPLY" : result.score >= 70 ? "⚠ MAYBE READY" : "✗ NOT READY YET"}
                                     </div>
@@ -337,8 +339,8 @@ export default function AnalysisResultsPage() {
                                     {activeTab === "reality" && (
                                         <div>
                                             <div className={`inline-block px-4 py-2 rounded-lg mb-4 font-semibold ${advancedData.reality.readiness === "READY" ? "bg-primary/10 text-primary" :
-                                                    advancedData.reality.readiness === "MAYBE READY" ? "bg-yellow-100 text-yellow-700" :
-                                                        "bg-red-100 text-red-700"
+                                                advancedData.reality.readiness === "MAYBE READY" ? "bg-yellow-100 text-yellow-700" :
+                                                    "bg-red-100 text-red-700"
                                                 }`}>
                                                 {advancedData.reality.readiness}
                                             </div>
@@ -348,8 +350,8 @@ export default function AnalysisResultsPage() {
                                     {activeTab === "readiness" && (
                                         <div>
                                             <div className={`text-6xl font-bold mb-4 ${advancedData.readiness.decision === "YES" ? "text-primary" :
-                                                    advancedData.readiness.decision === "MAYBE" ? "text-yellow-600" :
-                                                        "text-red-600"
+                                                advancedData.readiness.decision === "MAYBE" ? "text-yellow-600" :
+                                                    "text-red-600"
                                                 }`}>
                                                 {advancedData.readiness.decision}
                                             </div>
