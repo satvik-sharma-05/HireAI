@@ -14,9 +14,9 @@ python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 bcrypt==4.1.2
 
-# NLP & AI - Optimized for fast deployment
+# NLP & AI - Pre-built wheels only
 spacy==3.7.4
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl#egg=en-core-web-sm
 sentence-transformers==2.3.1
 scikit-learn==1.4.0
 numpy==1.26.3
