@@ -1,17 +1,26 @@
-from sentence_transformers import SentenceTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-# Load embedding model
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+# Initialize TF-IDF vectorizer (lightweight, no model loading)
+vectorizer = TfidfVectorizer(
+    max_features=5000,
+    ngram_range=(1, 2),
+    stop_words='english',
+    lowercase=True
+)
 
 def calculate_match_score(resume_text: str, job_description: str, resume_skills: list, job_skills: list) -> dict:
-    """Calculate semantic match score between resume and job"""
+    """Calculate match score using TF-IDF similarity"""
     
-    # 1. Semantic similarity (60% weight)
-    resume_embedding = model.encode([resume_text])
-    job_embedding = model.encode([job_description])
-    semantic_score = cosine_similarity(resume_embedding, job_embedding)[0][0]
+    # 1. TF-IDF semantic similarity (60% weight)
+    try:
+        # Fit vectorizer on both texts and transform
+        tfidf_matrix = vectorizer.fit_transform([resume_text, job_description])
+        semantic_score = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
+    except:
+        # Fallback if texts are too short
+        semantic_score = 0.5
     
     # 2. Skill match (40% weight)
     resume_skills_set = set([s.lower() for s in resume_skills])
